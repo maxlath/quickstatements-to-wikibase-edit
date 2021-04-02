@@ -1,0 +1,20 @@
+{
+  "name": "quickstatement2wikibase-edit",
+  "version": "1.0.0",
+  "description": "Convert QuickStatement syntax to wikibase-edit syntax'",
+  "main": "lib/convert.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "keywords": [
+    "quickstatement",
+    "wikibase-edit"
+  ],
+  "author": "maxlath",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^8.3.2",
+    "should": "^13.2.3"
+  },
+  "dependencies": {}
+}

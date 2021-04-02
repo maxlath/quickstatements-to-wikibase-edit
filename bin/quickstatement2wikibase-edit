@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+const convert = require('../lib/convert')
+const convertAndStringify = input => {
+  return convert(input)
+  .map(edit => JSON.stringify(edit))
+  .join('\n')
+}
+
+const [ file ] = process.argv.slice(2)
+
+if (file) {
+  process.stdout.write(convertAndStringify(file))
+} else {
+  let text = ''
+  process.stdin
+  .on('data', buf => text += buf.toString())
+  .on('close', () => process.stdout.write(convertAndStringify(text)))
+  .on('error', err => {
+    if (err.code !== 'EPIPE') console.error(err)
+  })
+}
