@@ -40,4 +40,13 @@ describe('add statement', () => {
       qualifiers: { P1319: [ { time: '+1586-00-00T00:00:00Z', precision: 9 } ] }
     })
   })
+
+  it('should add a statement with a reference', () => {
+    convert('Q22124656	P21	Q6581097	S143	Q24731821	S813	+2017-10-04T00:00:00Z/11')
+    .edits[0].claims.P21[0]
+    .should.deepEqual({
+      value: 'Q6581097',
+      references: { P143: [ 'Q24731821' ], P813: [ { time: '+2017-10-04T00:00:00Z', precision: 11 } ] }
+    })
+  })
 })
