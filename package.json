@@ -23,5 +23,16 @@
     "mocha": "^8.3.2",
     "should": "^13.2.3"
   },
-  "dependencies": {}
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxlath/quickstatements-to-wikibase-edit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maxlath/quickstatements-to-wikibase-edit/issues"
+  },
+  "homepage": "https://github.com/maxlath/quickstatements-to-wikibase-edit#readme"
 }
