@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+const { readFile, writeFile } = require('fs').promises
+const path = require('path')
+const crypto = require('crypto')
+const convert = require('../lib/convert')
+
+const convertAndGenerateCommandsFiles = async input => {
+  const hash = createHexHash(input)
+  const { edits, creations, merges } = convert(input)
+  await writeCommands('edits', edits, hash)
+  await writeCommands('creations', creations, hash)
+  await writeCommands('merges', merges, hash)
+}
+
+const createHexHash = input => {
+  return crypto.createHash('sha1')
+  .update(input)
+  .digest('hex')
+  .slice(0, 8)
+}
+
+const writeCommands = (name, data, hash) => {
+  if (!data) return
+  const filename = `${hash}-${name}.ndjson`
+  console.log(`writing ${filename} (${data.length})`)
+  return writeFile(filename, toNdJson(data))
+}
+
+const toNdJson = array => array.map(edit => JSON.stringify(edit)).join('\n')
+
+const [ file ] = process.argv.slice(2)
+
+if (file) {
+  const filepath = path.resolve(process.cwd(), file)
+  readFile(filepath)
+  .then(buf => convertAndGenerateCommandsFiles(buf.toString()))
+  .catch(console.error)
+} else {
+  let text = ''
+  process.stdin
+  .on('data', buf => text += buf.toString())
+  .on('close', () => convertAndGenerateCommandsFiles(text))
+  .on('error', err => {
+    if (err.code !== 'EPIPE') console.error(err)
+  })
+}
+

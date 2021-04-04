@@ -1,13 +1,16 @@
 {
-  "name": "quickstatement2wikibase-edit",
+  "name": "quickstatements-to-wikibase-edit",
   "version": "1.0.0",
-  "description": "Convert QuickStatement syntax to wikibase-edit syntax'",
+  "description": "Convert QuickStatements commands into wikibase-edit format",
   "main": "lib/convert.js",
+  "bin": {
+    "quickstatements-to-wikibase-edit": "bin/quickstatements-to-wikibase-edit"
+  },
   "scripts": {
     "test": "mocha tests"
   },
   "keywords": [
-    "quickstatement",
+    "quickstatements",
     "wikibase-edit"
   ],
   "author": "maxlath",
