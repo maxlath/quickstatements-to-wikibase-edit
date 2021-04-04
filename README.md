@@ -17,16 +17,21 @@ Tools to convert [QuickStatements commands](https://www.wikidata.org/wiki/Help:Q
 ## CLI
 ### Install
 ```sh
+# Should make the commands `wb` and `quickstatements-to-wikibase-edit` available from anywhere
 npm install --global wikibase-cli quickstatements-to-wikibase-edit
+# Make sure your credentials are setup for the target instance (example below with wikidata.org)
+wb config credentials https://www.wikidata.org test
+```
 
+### Usage
+```sh
 # Should generate edits, creations, and merges NDJSON files, depending on the commands content
 quickstatements-to-wikibase-edit ./quickstatement_commands.txt
 
-cat 0ba886b6-edits.ndjson | wb edit-entity --batch --summary 'fixing stuffs'
-cat 0ba886b6-creations.ndjson | wb create-entity --batch --summary 'fixing stuffs'
-cat 0ba886b6-merges.ndjson | wb merge-entity --batch --summary 'fixing stuffs'
+cat 0ba886b6-edits.ndjson | wb edit-entity --batch --summary 'fixing stuff'
+cat 0ba886b6-creations.ndjson | wb create-entity --batch --summary 'fixing stuff'
+cat 0ba886b6-merges.ndjson | wb merge-entity --batch --summary 'fixing stuff'
 ```
-### Usage
 
 ## JS
 ### Install
