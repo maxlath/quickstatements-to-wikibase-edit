@@ -13,6 +13,10 @@
     "quickstatements",
     "wikibase-edit"
   ],
+  "files": [
+    "bin",
+    "lib"
+  ],
   "author": "maxlath",
   "license": "MIT",
   "devDependencies": {
