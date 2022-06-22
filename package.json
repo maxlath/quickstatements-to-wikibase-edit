@@ -1,6 +1,6 @@
 {
   "name": "quickstatements-to-wikibase-edit",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Convert QuickStatements commands into wikibase-edit format",
   "main": "lib/convert.js",
   "bin": {
