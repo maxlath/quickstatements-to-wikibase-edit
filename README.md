@@ -5,14 +5,14 @@ Tools to convert [QuickStatements commands](https://www.wikidata.org/wiki/Help:Q
 :warning: Status: experimental
 
 **Supported features**
-* add statements with qualifiers and references
 * add labels, descriptions, aliases, sitelinks
+* add statements with qualifiers and references
+* if a statement with the same value already exist, do not re-add it, but add the new qualifiers and references
 * create items
 * merge items
 
 **Missing features**
 * remove statement
-* no check is performed to see if a statement already exists, creating duplicated statement if it does
 
 ## CLI
 ### Install

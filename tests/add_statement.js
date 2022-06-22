@@ -49,4 +49,9 @@ describe('add statement', () => {
       references: { P143: [ 'Q24731821' ], P813: [ { time: '+2017-10-04T00:00:00Z', precision: 11 } ] }
     })
   })
+
+  it('should set reconciliation to merge mode', () => {
+    const editEntry = convert('Q4115189	P31	Q1').edits[0]
+    editEntry.reconciliation.mode.should.equal('merge')
+  })
 })
