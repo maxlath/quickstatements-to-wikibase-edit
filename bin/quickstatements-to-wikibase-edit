@@ -2,10 +2,16 @@
 const { program } = require('commander')
 
 program
-.option('-r, --reconciliation <reconciliation-mode>', 'Set the behavior that should be used when an edit value already exists. Possible values: skip-on-any-value, skip-on-value-match, merge. See wikibase-edit documentation https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation-modes', 'merge')
+.argument('<quickstatements-file>', 'A file containing commands in QuickStatements format')
+.option('-r, --reconciliation <reconciliation-mode>', 'Set the behavior that should be used when an edit value already exists. Possible values: skip-on-any-value, skip-on-value-match, merge, none. See wikibase-edit documentation https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation-modes', 'merge')
 .parse()
 
 const options = program.opts()
+const [ file ] = program.processedArgs
+
+const { reconciliation: reconciliationMode } = options
+const reconciliation = { mode: reconciliationMode }
+const convertOptions = { reconciliation }
 
 const { createHexHash, writeCommands } = require('../lib/utils')
 const { readFile } = require('fs').promises
@@ -14,13 +20,11 @@ const convert = require('../lib/convert')
 
 const convertAndGenerateCommandsFiles = async input => {
   const hash = createHexHash(input)
-  const { edits, creations, merges } = convert(input, options)
+  const { edits, creations, merges } = convert(input, convertOptions)
   await writeCommands('edits', edits, hash)
   await writeCommands('creations', creations, hash)
   await writeCommands('merges', merges, hash)
 }
-
-const [ file ] = process.argv.slice(2)
 
 if (file) {
   const filepath = path.resolve(process.cwd(), file)

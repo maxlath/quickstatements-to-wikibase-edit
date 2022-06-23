@@ -33,6 +33,14 @@ cat 0ba886b6-creations.ndjson | wb create-entity --batch --summary 'fixing stuff
 cat 0ba886b6-merges.ndjson | wb merge-entity --batch --summary 'fixing stuff'
 ```
 
+By default, edits will be run with their [reconciliation mode](https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation) set to `merge`, to mimick QuickStatements behavior. Other reconciliation modes could be used (see [wikibase-edit documentation](https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation) for behavior explainations)
+```sh
+quickstatements-to-wikibase-edit ./quickstatement_commands.txt --reconciliation merge # Default
+quickstatements-to-wikibase-edit ./quickstatement_commands.txt --reconciliation skip-on-any-value
+quickstatements-to-wikibase-edit ./quickstatement_commands.txt --reconciliation skip-on-value-match
+quickstatements-to-wikibase-edit ./quickstatement_commands.txt --reconciliation none
+```
+
 ## JS
 ### Install
 ```sh
@@ -56,7 +64,15 @@ MERGE	Q1	Q2
 Q340122	Aen	"Cyprian Kamil Norwid|Cypryan Kamil Norvid"
 `
 
-const { edits, creations, merges } = quickstatementsToWikibaseEdit(commands)
+const options = {
+  // Optionnally set the reconciliation object, see wikibase-edit documentation
+  // https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation
+  reconciliation: {
+    mode: 'none' // Default value: merge (mimicking QuickStatements behavior)
+  }
+}
+
+const { edits, creations, merges } = quickstatementsToWikibaseEdit(commands, options)
 
 for (const edit of edits) {
   await wbEdit.entity.edit(edit)
