@@ -54,4 +54,34 @@ describe('add statement', () => {
     const editEntry = convert('Q4115189	P31	Q1').edits[0]
     editEntry.reconciliation.mode.should.equal('merge')
   })
+
+  it('should add a statement with snaptype "somevalue"', () => {
+    convert('Q41576483	P569	somevalue').edits[0].claims.P569[0]
+    .should.deepEqual({ snaktype: 'somevalue' })
+  })
+
+  it('should add a statement with snaptype "novalue"', () => {
+    convert('Q41576483	P569	novalue').edits[0].claims.P569[0]
+    .should.deepEqual({ snaktype: 'novalue' })
+  })
+
+  it('should add a qualifier with snaptype "somevalue"', () => {
+    convert('Q41576483	P370	foo	P369	somevalue').edits[0].claims.P370[0].qualifiers.P369[0]
+    .should.deepEqual({ snaktype: 'somevalue' })
+  })
+
+  it('should add a qualifier with snaptype "novalue"', () => {
+    convert('Q41576483	P370	foo	P369	novalue').edits[0].claims.P370[0].qualifiers.P369[0]
+    .should.deepEqual({ snaktype: 'novalue' })
+  })
+
+  it('should add a reference with snaptype "somevalue"', () => {
+    convert('Q41576483	P370	foo	S369	somevalue').edits[0].claims.P370[0].references.P369[0]
+    .should.deepEqual({ snaktype: 'somevalue' })
+  })
+
+  it('should add a reference with snaptype "novalue"', () => {
+    convert('Q41576483	P370	foo	S369	novalue').edits[0].claims.P370[0].references.P369[0]
+    .should.deepEqual({ snaktype: 'novalue' })
+  })
 })
