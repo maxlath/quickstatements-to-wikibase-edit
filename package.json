@@ -7,7 +7,8 @@
     "quickstatements-to-wikibase-edit": "bin/quickstatements-to-wikibase-edit"
   },
   "scripts": {
-    "test": "mocha tests"
+    "test": "mocha tests",
+    "prepublishOnly": "npm test"
   },
   "keywords": [
     "quickstatements",
