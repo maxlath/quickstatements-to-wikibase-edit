@@ -1,4 +1,12 @@
 #!/usr/bin/env node
+const { program } = require('commander')
+
+program
+.option('-r, --reconciliation <reconciliation-mode>', 'Set the behavior that should be used when an edit value already exists. Possible values: skip-on-any-value, skip-on-value-match, merge. See wikibase-edit documentation https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation-modes', 'merge')
+.parse()
+
+const options = program.opts()
+
 const { readFile, writeFile } = require('fs').promises
 const path = require('path')
 const crypto = require('crypto')
@@ -6,7 +14,7 @@ const convert = require('../lib/convert')
 
 const convertAndGenerateCommandsFiles = async input => {
   const hash = createHexHash(input)
-  const { edits, creations, merges } = convert(input)
+  const { edits, creations, merges } = convert(input, options)
   await writeCommands('edits', edits, hash)
   await writeCommands('creations', creations, hash)
   await writeCommands('merges', merges, hash)

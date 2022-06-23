@@ -35,5 +35,8 @@
   "bugs": {
     "url": "https://github.com/maxlath/quickstatements-to-wikibase-edit/issues"
   },
-  "homepage": "https://github.com/maxlath/quickstatements-to-wikibase-edit#readme"
+  "homepage": "https://github.com/maxlath/quickstatements-to-wikibase-edit#readme",
+  "dependencies": {
+    "commander": "^9.3.0"
+  }
 }
