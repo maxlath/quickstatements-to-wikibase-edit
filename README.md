@@ -2,8 +2,6 @@
 
 Tools to convert [QuickStatements commands](https://www.wikidata.org/wiki/Help:QuickStatements#Command_sequence_syntax) into [wikibase-edit format](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#api).
 
-:warning: Status: experimental
-
 **Supported features**
 * add labels, descriptions, aliases, sitelinks
 * add statements with qualifiers and references
