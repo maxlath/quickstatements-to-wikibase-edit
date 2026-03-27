@@ -30,12 +30,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maxlath/quickstatements-to-wikibase-edit.git"
+    "url": "https://codeberg.org/maxlath/quickstatements-to-wikibase-edit"
   },
   "bugs": {
-    "url": "https://github.com/maxlath/quickstatements-to-wikibase-edit/issues"
+    "url": "https://codeberg.org/maxlath/quickstatements-to-wikibase-edit/issues"
   },
-  "homepage": "https://github.com/maxlath/quickstatements-to-wikibase-edit#readme",
+  "homepage": "https://codeberg.org/maxlath/quickstatements-to-wikibase-edit#readme",
   "dependencies": {
     "commander": "^9.3.0"
   }
